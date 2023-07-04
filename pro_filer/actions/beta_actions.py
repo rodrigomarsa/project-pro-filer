@@ -2,11 +2,20 @@
 
 
 def show_deepest_file(context):
+    deepest_file = ""
+    depth_max = 0
     if not context["all_files"]:
-        print("No files found")
-    else:
-        deepest_file = max(context["all_files"], key=len)
-        print(f"Deepest file: {deepest_file}")
+        return print("No files found")
+    for path in context["all_files"]:
+        file_name = path.split("/")
+        depth = len(file_name)
+        if depth > depth_max:
+            depth_max = depth
+            deepest_file = path
+    print(f"Deepest file: {deepest_file}")
+    # else:
+    #     deepest_file = max(context["all_files"], key=len)
+    #     print(f"Deepest file: {deepest_file}")
 
 
 def find_file_by_name(context, search_term, case_sensitive=True):
